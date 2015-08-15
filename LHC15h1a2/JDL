@@ -1,0 +1,55 @@
+Executable = "aliroot_new";
+
+Jobtag={"comment:p-p, Pythia 8 minimum bias production anchored to LHC12[e-g] pass2, 8 TeV (RAW OCDB), ALIROOT-6180"};
+Packages = 
+{
+    "VO_ALICE@AliRoot::v5-05-Rev-30a",
+    "VO_ALICE@GEANT3::v1-15a-1",
+    "VO_ALICE@ROOT::v5-34-08-6",
+    "VO_ALICE@APISCONFIG::V1.1x",
+    "VO_ALICE@boost::v1_43_0",
+    "VO_ALICE@cgal::v3.6",
+    "VO_ALICE@fastjet::v2.4.2",
+    "VO_ALICE@jemalloc::v3.0.0"
+};
+
+TTL = "72000";
+Price="10";
+
+#Requirements = member(other.GridPartitions,"PDC08_2");
+
+Validationcommand ="/alice/validation/validation.sh";
+
+InputFile= 
+{
+            "LF:/alice/cern.ch/user/a/aliprod/LHC15h1a2/CheckESD.C",
+            "LF:/alice/cern.ch/user/a/aliprod/LHC15h1a2/Config.C",
+            "LF:/alice/cern.ch/user/a/aliprod/LHC15h1a2/rec.C",
+            "LF:/alice/cern.ch/user/a/aliprod/LHC15h1a2/sim.C",
+            "LF:/alice/cern.ch/user/a/aliprod/bin/simrun.sh",
+            "LF:/alice/cern.ch/user/a/aliprod/LHC15h1a2/tag.C",
+            "LF:/alice/cern.ch/user/a/aliprod/QA/pp/v5-05-Rev-28/AODtrainsim.C",
+            "LF:/alice/cern.ch/user/a/aliprod/QA/pp/v5-05-Rev-28/QAtrainsim.C"
+};
+
+Output = 
+{
+        "log_archive.zip:stderr.log,stdout.log,tag.log,sim.log,rec.log,qa.log,aod.log,simwatch.log,recwatch.log@disk=1",
+        "QA_archive.zip:QAresults*.root,event_stat*.root,trending*.root,fileinfo*.log,*.stat.qa*@disk=2",
+        "root_archive.zip:galice.root,Kinematics.root,TrackRefs.root,Trigger.root,AliESDs.root,AliESDfriends.root,Run*.root@disk=2",
+        "aod_archive.zip:pyxsec*.root,AODQA.root,AliAOD*.root,FilterEvents_Trees*.root,*.stat.aod@disk=3",
+        "EventStat_temp*.root@disk=2"
+};
+
+
+OutputDir="/alice/sim/2015/LHC15h1a2/$1/#alien_counter_03i#";
+
+JDLVariables={"Packages", "OutputDir"};
+GUIDFILE="guid.txt";
+
+splitarguments="--run $1 --event #alien_counter# --process kPythia8 --energy 8000";
+
+split="production:1-200";
+
+Workdirectorysize={"6000MB"};
+
