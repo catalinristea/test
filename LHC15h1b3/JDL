@@ -49,7 +49,7 @@ GUIDFILE="guid.txt";
 
 splitarguments="--run $1 --event #alien_counter# --process kPhojet --energy 8000";
 
-split="production:1-200";
+split="production:$2-$3";
 
 Workdirectorysize={"6000MB"};
 
