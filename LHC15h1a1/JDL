@@ -1,6 +1,6 @@
 Executable = "aliroot_new";
 
-Jobtag={"comment:p-p, Pythia 8 minimum bias production anchored to LHC12[*a-i*] pass2, 8 TeV (RAW OCDB), ALIROOT-6180"};
+Jobtag={"comment:p-p, Pythia 8 minimum bias production anchored to LHC12[a-d] pass2, 8 TeV (RAW OCDB), ALIROOT-6180"};
 Packages = 
 {
     "VO_ALICE@AliRoot::v5-05-Rev-30a",
